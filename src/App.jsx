@@ -1,25 +1,28 @@
-import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
-import Login from './components/Login';
+import Home from './components/Home/Home';
+import Layout from './components/Layout/Layout';
+import About from './components/About/About';
+import Login from './components/Login/Login';
+import DashboardLayout from './components/DashboardLayout/DashboardLayout';
+import Dashboard from './components/Dashboard/Dashboard';
 
-// Wrapper component to provide navigation as a prop
-function LoginWithNavigate() {
-  const navigate = useNavigate();
-  return <Login navigate={navigate} />;
-}
+let routes = createBrowserRouter([
+  {
+    path:'/', element: <Layout/>, children:[
+      {path: 'home' , element: <Home/>},
+      {path: 'about' , element: <About/>},
+      {path: 'login' , element: <Login/>},
+    ]
+  },
+  {
+    path:'DashboardLayout', element: <DashboardLayout/>, children:[
+      {path: 'Dashboard' , element: <Dashboard/>},
+    ]
+  },
+])
 
 function App() {
-  const routes = createBrowserRouter([
-    {
-      path: '/',
-      element: <LoginWithNavigate />, // Use the wrapper component
-    },
-    {
-      path: '/home',
-      element: <Home />,
-    },
-  ]);
 
   return <RouterProvider router={routes} />;
 }

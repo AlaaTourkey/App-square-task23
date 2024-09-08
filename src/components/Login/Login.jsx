@@ -9,14 +9,12 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { navigate } = props;
 
-  // const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      const response = await axios.post("https://movies-api.routemisr.com/signin", {
+      const response = await axios.post("https://backend.profferdeals.com/api/admin/login", {
         email,
         password,
       });
@@ -25,7 +23,6 @@ function Login(props) {
         props.login(response.data);
         localStorage.setItem("authToken", response.data.token);
         setSuccess(response.data.message)
-        navigate('/home')
       }
     } catch (error) {
       setError("Invalid credentials or server error.", error);
