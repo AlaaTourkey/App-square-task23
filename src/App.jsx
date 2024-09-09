@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 let routes = createBrowserRouter([
   {
     path:'/', element: <Layout/>, children:[
+      {path: '/' , element: <Home/>},
       {path: 'home' , element: <Home/>},
       {path: 'about' , element: <About/>},
       {path: 'login' , element: <Login/>},
@@ -17,7 +18,7 @@ let routes = createBrowserRouter([
   },
   {
     path:'DashboardLayout', element: <DashboardLayout/>, children:[
-      {path: 'Dashboard' , element: <Dashboard/>},
+      {path: 'dashboard' , element: <Dashboard/>},
     ]
   },
 ])
